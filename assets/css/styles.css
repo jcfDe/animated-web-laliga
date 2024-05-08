@@ -1,0 +1,918 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "LALIGAText";
+  src: url("../fonts/LALIGAText-Regular.woff2") format("woff2"), url("../fonts/LALIGAText-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "LALIGAText";
+  src: url("../fonts/LALIGAText-Bold.woff2") format("woff2"), url("../fonts/LALIGAText-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: "LALIGAText";
+  src: url("../fonts/LALIGAText-Light.woff2") format("woff2"), url("../fonts/LALIGAText-Light.woff") format("woff");
+  font-weight: lighter;
+  font-style: normal; }
+@font-face {
+  font-family: "LALIGAHeadline";
+  src: url("../fonts/LALIGAHeadline-StdBold.woff2") format("woff2"), url("../fonts/LALIGAHeadline-StdBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: "LALIGAHeadline";
+  src: url("../fonts/LALIGAHeadline-WideRegular.woff2") format("woff2"), url("../fonts/LALIGAHeadline-WideRegular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+/**
+* Characters to escape from SVGs
+* Source: https://github.com/Threespot/frontline-sass/blob/master/src/variables/_escape-chars.scss
+*/
+/**
+ * Helper to get URL-escaped inline SVG code
+ */
+:root {
+  --svg-laliga: url("data:image/svg+xml, %3Csvg%20xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox=%270%200%20107%2025%27%20fill=%27none%27%3E%3Cpath%20d=%27M84.7499%2015.9091V17.0455C84.7499%2021.3068%2081.0567%2025%2076.7954%2025H74.5227C73.6704%2025%2072.534%2024.7159%2071.6817%2024.4318C68.5567%2023.2955%2066.5681%2020.4545%2066.5681%2017.0455V7.95454C66.5681%207.67045%2066.5681%207.38636%2066.5681%207.10227C66.8522%203.97727%2068.8408%201.42045%2071.6817%200.568182C72.534%200.284091%2073.3863%200%2074.5227%200H76.7954C80.7727%200%2084.1817%203.125%2084.7499%207.10227H79.6363V6.53409C79.6363%205.68182%2078.784%204.82955%2077.9317%204.82955H73.3863C72.534%204.82955%2071.6817%205.68182%2071.6817%206.53409V18.4659C71.6817%2019.3182%2072.534%2020.1705%2073.3863%2020.1705H77.9317C78.784%2020.1705%2079.6363%2019.3182%2079.6363%2018.4659V15.3409H75.3749V10.2273H81.3408L83.6136%2012.5C84.1817%2013.6364%2084.7499%2014.7727%2084.7499%2015.9091Z%27%20fill=%27white%27%2F%3E%3Cpath%20d=%27M102.079%207.10227L100.659%201.70455C100.375%200.852273%2099.5227%200%2098.3863%200H92.4204L90.7158%207.10227L86.7386%2022.4432C86.7386%2022.7273%2086.7386%2023.0114%2086.7386%2023.5795V25H91.284L92.1363%2021.3068L99.8067%2017.6136L101.795%2025H106.057V22.4432L102.079%207.10227ZM93.2727%2016.1932L95.5454%207.10227L96.3977%204.26136L97.2499%207.10227L99.5227%2016.1932H93.2727Z%27%20fill=%27white%27%2F%3E%3Cpath%20d=%27M33.6136%207.10227L32.1932%201.70455C31.9091%200.852273%2031.0568%200%2029.9205%200H23.9546L21.9659%207.10227L18.2727%2022.4432C17.9886%2022.7273%2017.9886%2023.0114%2017.9886%2023.2955V24.7159H22.5341L23.6705%2021.0227L31.3409%2017.3295L33.3296%2024.7159H37.5909V22.4432L33.6136%207.10227ZM24.8068%2016.1932L27.0796%207.10227L27.9318%204.26136L28.7841%207.10227L31.0568%2016.1932H24.8068Z%27%20fill=%27white%27%2F%3E%3Cpath%20d=%27M62.875%200H57.7614V24.7159H62.875V0Z%27%20fill=%27white%27%2F%3E%3Cpath%20d=%27M54.6365%2019.8864V25H42.9888L40.7161%2022.4432C40.432%2021.875%2040.1479%2021.3068%2040.1479%2020.7386V0H45.2615V19.8864H54.6365Z%27%20fill=%27white%27%2F%3E%3Cpath%20d=%27M15.4319%2019.8864V25H3.78418L1.51145%2022.1591C1.22736%2021.875%200.943268%2021.3068%200.943268%2020.7386V0H6.0569V19.8864H15.4319Z%27%20fill=%27white%27%2F%3E%3C%2Fsvg%3E ");
+  --svg-tiktok: url("data:image/svg+xml, %3Csvg%20xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox=%270%200%2025%2024%27%20fill=%27none%27%3E%3Cpath%20d=%27M17.1%205.82C16.4164%205.03962%2016.0397%204.03743%2016.04%203H12.95V15.4C12.9262%2016.071%2012.6429%2016.7066%2012.1598%2017.1729C11.6767%2017.6393%2011.0315%2017.8999%2010.36%2017.9C8.94%2017.9%207.76%2016.74%207.76%2015.3C7.76%2013.58%209.42%2012.29%2011.13%2012.82V9.66C7.68%209.2%204.66%2011.88%204.66%2015.3C4.66%2018.63%207.42%2021%2010.35%2021C13.49%2021%2016.04%2018.45%2016.04%2015.3V9.01C17.293%209.90985%2018.7974%2010.3926%2020.34%2010.39V7.3C20.34%207.3%2018.46%207.39%2017.1%205.82Z%27%20fill=%27white%27%2F%3E%3C%2Fsvg%3E "); }
+
+* {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0; }
+
+.delete {
+  display: none !important;
+  opacity: 0 !important; }
+
+body {
+  margin: 0;
+  background: black;
+  padding: 0;
+  scroll-behavior: smooth; }
+
+section {
+  min-height: 100vh;
+  width: 100%; }
+
+.container {
+  align-self: center;
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto; }
+
+.row {
+  display: flex;
+  flex-direction: row; }
+
+.col {
+  display: flex;
+  flex-direction: column; }
+
+.box-image > img {
+  width: 100%;
+  height: auto; }
+
+.intro {
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10; }
+  .intro .circulo {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/circulo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 1;
+    scale: 1; }
+  .intro .gradiente {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, black 0%);
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 1; }
+  .intro .logo {
+    z-index: 4;
+    height: 74px;
+    width: 190px;
+    background-image: url(../img/logo-mood-laliga.png);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    scale: 1; }
+  .intro .scroll-down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100px;
+    height: 100px;
+    z-index: 100;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 44%, rgba(0, 0, 0, 0) 61%);
+    background-repeat: no-repeat; }
+    .intro .scroll-down > img {
+      max-width: 24px;
+      position: relative;
+      left: 4px; }
+
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 98;
+  overflow: visible; }
+  .nav-bar .nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: visible; }
+    .nav-bar .nav-container .nav-logo {
+      cursor: pointer;
+      position: relative;
+      overflow: visible; }
+      .nav-bar .nav-container .nav-logo:before {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 131px;
+        width: 160px;
+        top: -49px;
+        left: -45px;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.71) 0%, rgba(0, 0, 0, 0) 61%);
+        z-index: -1;
+        background-repeat: no-repeat; }
+    .nav-bar .nav-container .nav-btn {
+      align-self: center; }
+      .nav-bar .nav-container .nav-btn .btn {
+        font-family: "LALIGAText";
+        font-weight: bold;
+        display: block;
+        padding: 14px 23px 13px 23px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        text-decoration: none; }
+
+.sec1 {
+  background-color: black;
+  background: url("../img/hero-bg.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: 100%;
+  height: 100vh;
+  width: 100%;
+  color: white;
+  position: relative;
+  top: 0;
+  /* Inicialmente mueve la sección fuera de la vista */
+  display: flex;
+  background-size: 70%;
+  background-position-y: 50%; }
+  .sec1 .container .hero-title {
+    font-family: "LALIGAHeadline";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 110%;
+    color: white;
+    text-transform: uppercase;
+    max-width: 548px;
+    align-self: center;
+    justify-self: center;
+    background: radial-gradient(rgba(0, 0, 0, 0.7) 57%, transparent 68%); }
+  .sec1 .box-image.mobile {
+    display: none; }
+
+.sec2,
+.sec3 {
+  display: flex;
+  background: #000000;
+  color: #ffffff; }
+
+.sec2 .container .description {
+  color: #ffffff;
+  font-family: "LALIGAText";
+  max-width: 837px;
+  width: 100%;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%; }
+.sec2 .container .line {
+  position: relative; }
+.sec2 .container .heading-wrap {
+  width: 100%; }
+.sec2 .container .split-lines {
+  margin-top: 0px;
+  margin-bottom: 0px; }
+.sec2 .container .line-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.85;
+  width: 100%;
+  height: 110%;
+  z-index: 2; }
+
+.sec3 {
+  min-height: unset; }
+  .sec3 .container .section-title {
+    color: #ffffff;
+    text-align: center;
+    font-family: "LALIGAHeadline";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%;
+    text-transform: uppercase;
+    max-width: 310px;
+    margin: 0 auto 35px; }
+  .sec3 .container .row {
+    justify-content: space-between;
+    align-items: stretch; }
+    .sec3 .container .row .col {
+      align-items: center;
+      width: 32%;
+      position: relative;
+      top: -60px; }
+      .sec3 .container .row .col:nth-child(2) {
+        top: 0; }
+        .sec3 .container .row .col:nth-child(2) .card:first-child {
+          margin-bottom: 28px; }
+      .sec3 .container .row .col:first-child .card, .sec3 .container .row .col:last-child .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; }
+      .sec3 .container .row .col .card {
+        border-radius: 18px;
+        background: #1D1D1D;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden; }
+        .sec3 .container .row .col .card .card-title {
+          color: #ffffff;
+          font-family: "LALIGAText";
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 110%;
+          margin-top: 32px;
+          margin-left: 24px;
+          margin-bottom: 16px; }
+        .sec3 .container .row .col .card .card-text {
+          color: #ffffff;
+          font-family: "LALIGAText";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: lighter;
+          line-height: 160%;
+          margin: 0 24px 16px; }
+        .sec3 .container .row .col .card .card-image {
+          width: 100%; }
+          .sec3 .container .row .col .card .card-image > img {
+            width: 100%;
+            height: auto;
+            top: 4px;
+            position: relative; }
+        .sec3 .container .row .col .card.card-impactar {
+          width: 100%; }
+          .sec3 .container .row .col .card.card-impactar .row .col {
+            align-items: start;
+            max-width: 215px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            top: 0; }
+          .sec3 .container .row .col .card.card-impactar .row .card-image {
+            max-width: 170px;
+            position: relative;
+            left: -12px; }
+
+.sec4 {
+  min-height: unset;
+  padding-top: 140px; }
+  .sec4 .container {
+    margin-bottom: 40px; }
+    .sec4 .container .section-title2 {
+      color: #ffffff;
+      text-align: left;
+      font-family: "LALIGAHeadline";
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 110%;
+      text-transform: uppercase; }
+    .sec4 .container .row .col {
+      width: 33%; }
+      .sec4 .container .row .col .card2 {
+        margin: 10px;
+        color: #ffffff; }
+        .sec4 .container .row .col .card2 .card-title {
+          color: #ffffff;
+          text-align: left;
+          font-family: "LALIGAHeadline";
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 110%;
+          display: flex;
+          align-items: center;
+          /* 22px */ }
+          .sec4 .container .row .col .card2 .card-title > span {
+            text-align: center;
+            font-family: "LALIGAHeadline";
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 110%;
+            margin-right: 12px; }
+            .sec4 .container .row .col .card2 .card-title > span.card-title-number1 {
+              color: #FF4B44; }
+            .sec4 .container .row .col .card2 .card-title > span.card-title-number2 {
+              color: #9B5CFF; }
+            .sec4 .container .row .col .card2 .card-title > span.card-title-number3 {
+              color: #00D4D6; }
+        .sec4 .container .row .col .card2 .card-image {
+          width: 100%;
+          border-radius: 18px;
+          overflow: hidden; }
+          .sec4 .container .row .col .card2 .card-image > img {
+            width: 100%;
+            height: auto;
+            top: 4px;
+            position: relative; }
+        .sec4 .container .row .col .card2 .card-text {
+          color: #ffffff;
+          font-family: "LALIGAText";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: lighter;
+          line-height: 160%;
+          margin: 24px 0 16px; }
+        .sec4 .container .row .col .card2.card2-3 .btn-tiktok {
+          align-self: start; }
+          .sec4 .container .row .col .card2.card2-3 .btn-tiktok .btn {
+            font-family: "LALIGAText";
+            font-weight: bold;
+            display: flex;
+            padding: 13px 16px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
+            max-width: 257px; }
+            .sec4 .container .row .col .card2.card2-3 .btn-tiktok .btn > span .logo-tiktok {
+              display: block;
+              width: 24px;
+              height: 24px;
+              margin-right: 6px; }
+
+.sec5 {
+  background-image: url(../img/circulo.png);
+  background-position-x: 100%;
+  background-position-y: 0;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: unset; }
+  .sec5:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1; }
+  .sec5 .container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 894px; }
+    .sec5 .container .section-title3.desktop {
+      max-width: 250px;
+      display: inline; }
+      .sec5 .container .section-title3.desktop:after {
+        content: url("../img/vector4.svg");
+        display: inline-block;
+        width: 23px;
+        height: 22px;
+        position: relative;
+        bottom: 19px;
+        left: 24px; }
+      .sec5 .container .section-title3.desktop .title-desktop {
+        margin-top: 160px;
+        max-width: 250px; }
+    .sec5 .container .section-title3.mobile {
+      max-width: 250px;
+      display: none; }
+      .sec5 .container .section-title3.mobile .title-mobile {
+        margin-top: 160px;
+        max-width: 250px; }
+    .sec5 .container .iframe-container {
+      box-sizing: border-box;
+      align-items: flex-start;
+      justify-content: center;
+      border-radius: 20px;
+      background: #1D1D1D;
+      width: 100%;
+      max-width: 894px;
+      height: 525px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 24px; }
+      .sec5 .container .iframe-container > iframe {
+        display: block;
+        width: 100%;
+        height: 561px; }
+      .sec5 .container .iframe-container.mobile {
+        display: none; }
+      .sec5 .container .iframe-container.desktop {
+        display: flex; }
+
+.sec6 {
+  min-height: unset;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) -6.86%, #1d1d1d 18.29%); }
+  .sec6 .container .sec6-line {
+    margin-top: 180px;
+    max-width: 1236px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(152, 152, 152, 0) 0.52%, #989898 29.17%, #FFF 48.96%, #8E8E8E 67.71%, rgba(171, 171, 171, 0) 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.35); }
+  .sec6 .container .logos {
+    padding-top: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .sec6 .container .row {
+    align-items: center;
+    justify-content: center; }
+    .sec6 .container .row .col {
+      align-items: center; }
+      .sec6 .container .row .col .text-up {
+        color: #FFF;
+        font-family: "LALIGAText";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 140%;
+        margin-bottom: 24px; }
+      .sec6 .container .row .col .text {
+        color: #FFF;
+        font-family: "LALIGAText";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 140%;
+        margin-top: 24px;
+        margin-bottom: 8px; }
+        .sec6 .container .row .col .text > span {
+          margin-left: 4px; }
+      .sec6 .container .row .col .mood-description {
+        color: #F5F5F5;
+        text-align: center;
+        font-family: "LALIGAText";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+        width: 100%;
+        max-width: 566px;
+        margin-top: 48px;
+        margin-bottom: 80px; }
+      .sec6 .container .row .col .logo-sintesis {
+        width: 100%;
+        max-width: 162px;
+        margin-bottom: 8px; }
+      .sec6 .container .row .col .logo-groupm {
+        width: 100%;
+        max-width: 162px;
+        margin-bottom: 8px; }
+      .sec6 .container .row .col .logo-description {
+        width: 100%;
+        max-width: 194px;
+        text-align: center;
+        color: #8A8A8A;
+        font-family: "LALIGAText";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%; }
+      .sec6 .container .row .col .logo-plus {
+        width: 40px;
+        height: 40px;
+        margin: 0 25px; }
+      .sec6 .container .row .col .logo-mood {
+        width: 100%;
+        max-width: 160px;
+        margin-bottom: 24px; }
+
+footer.footer {
+  width: 100%;
+  height: 100%;
+  background-color: #1D1D1D;
+  padding-top: 62px;
+  padding-bottom: 42px;
+  margin-top: -1px; }
+  footer.footer .container:first-child {
+    position: relative; }
+    footer.footer .container:first-child:before {
+      content: "";
+      height: 1px;
+      width: 100%;
+      display: block;
+      background: rgba(255, 255, 255, 0.1);
+      position: absolute;
+      top: -32px; }
+  @media (min-width: 768px) {
+    footer.footer {
+      padding-top: 62px;
+      padding-bottom: 42px; } }
+  footer.footer .anchor-text {
+    font-family: "LALIGAText";
+    color: #fff;
+    text-decoration: none; }
+    footer.footer .anchor-text.title {
+      font-size: 14px; }
+    footer.footer .anchor-text.copyright {
+      font-size: 12px;
+      text-align: center; }
+      @media (min-width: 768px) {
+        footer.footer .anchor-text.copyright {
+          text-align: left; } }
+      @media (min-width: 992px) {
+        footer.footer .anchor-text.copyright {
+          font-size: 14px; } }
+    footer.footer .anchor-text.privacy {
+      font-size: 16px;
+      line-height: 44px; }
+  footer.footer .footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    @media (min-width: 768px) {
+      footer.footer .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch; } }
+    footer.footer .footer-container .options-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: fit-content;
+      width: 100%; }
+      @media (min-width: 768px) {
+        footer.footer .footer-container .options-container {
+          align-items: start; } }
+      footer.footer .footer-container .options-container:nth-child(1) {
+        order: 3; }
+        @media (min-width: 768px) {
+          footer.footer .footer-container .options-container:nth-child(1) {
+            order: 1; } }
+      footer.footer .footer-container .options-container:nth-child(2) {
+        order: 2; }
+        @media (min-width: 768px) {
+          footer.footer .footer-container .options-container:nth-child(2) {
+            margin-left: 20px;
+            margin-right: 20px; } }
+      footer.footer .footer-container .options-container:nth-child(3) {
+        order: 2; }
+        @media (min-width: 768px) {
+          footer.footer .footer-container .options-container:nth-child(3) {
+            order: 3; } }
+      footer.footer .footer-container .options-container .laliga-icon {
+        margin-bottom: 26px; }
+        @media (min-width: 768px) {
+          footer.footer .footer-container .options-container .laliga-icon {
+            margin-bottom: 40px; } }
+        footer.footer .footer-container .options-container .laliga-icon:before {
+          display: block;
+          content: var(--svg-laliga);
+          width: 105px; }
+      footer.footer .footer-container .options-container .tiktok-icon {
+        justify-content: center;
+        align-items: center;
+        width: 46px;
+        height: 46px;
+        background-color: #000;
+        border-radius: 100%;
+        margin-bottom: 26px; }
+        @media (min-width: 768px) {
+          footer.footer .footer-container .options-container .tiktok-icon {
+            margin-bottom: 0; } }
+        footer.footer .footer-container .options-container .tiktok-icon:before {
+          display: block;
+          content: var(--svg-tiktok);
+          width: 26px; }
+        footer.footer .footer-container .options-container .tiktok-icon__desktop {
+          display: none; }
+          @media (min-width: 768px) {
+            footer.footer .footer-container .options-container .tiktok-icon__desktop {
+              display: flex; } }
+        footer.footer .footer-container .options-container .tiktok-icon__mobile {
+          display: flex; }
+          @media (min-width: 768px) {
+            footer.footer .footer-container .options-container .tiktok-icon__mobile {
+              display: none; } }
+      footer.footer .footer-container .options-container .groupm-icon {
+        display: flex;
+        max-width: 126px;
+        width: 100%;
+        margin-top: 16px;
+        margin-bottom: 8px; }
+        footer.footer .footer-container .options-container .groupm-icon img {
+          width: 100%; }
+      footer.footer .footer-container .options-container .sintesis-icon {
+        display: flex;
+        max-width: 135px;
+        width: 100%;
+        margin-top: 8px;
+        margin-bottom: 16px; }
+        footer.footer .footer-container .options-container .sintesis-icon img {
+          width: 100%; }
+      footer.footer .footer-container .options-container__copyright {
+        max-width: 413px; }
+        @media (min-width: 768px) {
+          footer.footer .footer-container .options-container__copyright {
+            justify-content: space-between;
+            max-width: 304px; } }
+
+#test {
+  margin: 0; }
+  #test .section1 {
+    height: 100vh;
+    background-color: salmon; }
+  #test .section2 {
+    height: 100vh;
+    background-color: violet; }
+    #test .section2 .square {
+      height: 200px;
+      width: 200px;
+      background-color: fuchsia; }
+  #test .section3 {
+    height: 200vh;
+    background-color: black; }
+
+@media only screen and (max-width: 1200px) {
+  .sec1 {
+    background-size: 60%;
+    background-position-y: 50%; } }
+@media only screen and (max-width: 1024px) {
+  .sec1 .container .hero-title {
+    font-size: 52px;
+    max-width: 435px; }
+
+  .sec4 .container .row .col .btn-tiktok .btn {
+    font-size: 13px; } }
+@media only screen and (max-width: 768px) {
+  .nav-bar .nav-container .nav-logo {
+    max-width: 90px; }
+  .nav-bar .nav-container .nav-btn .btn {
+    padding: 9px 23px; }
+
+  .sec1 {
+    background: url("../img/sec1-bg-mobile.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: unset;
+    height: 100vh;
+    width: 100%;
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column; }
+    .sec1 .container .hero-title {
+      margin: 144px auto 23px;
+      text-align: center; }
+    .sec1 .box-image.mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .sec1 .box-image.mood-laliga {
+      max-width: 148px;
+      margin: 0 auto 72px; }
+    .sec1 .box-image.matrix {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(3, 2, 2, 0.6111038165) 13%, #060303 100%); }
+
+  .sec2 {
+    min-height: unset; }
+    .sec2 .container {
+      align-self: start;
+      margin-top: 164px;
+      margin-bottom: 160px; }
+      .sec2 .container .heading-wrap .description {
+        font-size: 42px; }
+
+  .sec3 .container .section-title {
+    font-size: 32px;
+    margin: 0 0 24px;
+    text-align: left; }
+  .sec3 .container .row {
+    flex-direction: column; }
+    .sec3 .container .row .col {
+      width: 100%;
+      top: 0; }
+      .sec3 .container .row .col .card {
+        margin-bottom: 16px; }
+        .sec3 .container .row .col .card .card-title {
+          font-size: 18px; }
+        .sec3 .container .row .col .card.card-impactar .row .col {
+          width: 100%;
+          max-width: 100%; }
+        .sec3 .container .row .col .card.card-impactar .row .card-image {
+          display: none; }
+      .sec3 .container .row .col:nth-child(2) .card:first-child {
+        margin-bottom: 16px; }
+
+  .sec4 {
+    min-height: unset;
+    padding-top: 64px; }
+    .sec4 .container .section-title2 {
+      font-size: 32px;
+      margin-bottom: 24px; }
+    .sec4 .container .row {
+      flex-direction: column; }
+      .sec4 .container .row .col {
+        width: 100%; }
+        .sec4 .container .row .col .card2 .card-title {
+          font-size: 18px; }
+        .sec4 .container .row .col .card2 .card-image {
+          margin-top: 32px; }
+        .sec4 .container .row .col .card2 .card-text {
+          color: #ffffff;
+          font-family: "LALIGAText";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: lighter;
+          line-height: 160%;
+          margin: 24px 0 24px; }
+        .sec4 .container .row .col .card2.card2-3 .btn-tiktok {
+          align-self: start; }
+          .sec4 .container .row .col .card2.card2-3 .btn-tiktok .btn {
+            font-family: "LALIGAText";
+            font-weight: bold;
+            display: flex;
+            padding: 13px 16px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
+            max-width: 257px; }
+            .sec4 .container .row .col .card2.card2-3 .btn-tiktok .btn > span.logo-tiktok {
+              display: block;
+              width: 24px;
+              height: 24px;
+              margin-right: 4px; }
+
+  .sec5 {
+    background: none; }
+    .sec5:before {
+      display: none; }
+    .sec5 .container .section-title3 {
+      width: 100%;
+      margin: 0 auto; }
+      .sec5 .container .section-title3.desktop {
+        display: none; }
+      .sec5 .container .section-title3.mobile {
+        display: block;
+        margin: 0 auto; }
+        .sec5 .container .section-title3.mobile .title-mobile {
+          margin-top: 80px; }
+    .sec5 .container .iframe-container {
+      height: 524px; }
+      .sec5 .container .iframe-container.desktop {
+        display: none; }
+      .sec5 .container .iframe-container.mobile {
+        display: flex; } }
+@media only screen and (max-width: 520px) {
+  .sec1 .container .hero-title {
+    margin: 144px auto 23px;
+    font-size: 32px; }
+  .sec1 .box-image.mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .sec1 .box-image.mood-laliga {
+    max-width: 148px;
+    margin: 0 auto 72px; }
+  .sec1 .box-image.matrix {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(3, 2, 2, 0.6111038165) 13%, #060303 100%); }
+
+  .sec2 .container {
+    align-self: start;
+    margin-top: 164px; }
+    .sec2 .container .heading-wrap .description {
+      font-size: 32px; }
+
+  .sec3 .container .row {
+    flex-direction: column; }
+    .sec3 .container .row .col {
+      width: 100%; }
+
+  .sec4 .container .row .col .card2 .card-image {
+    margin-top: 16px; }
+  .sec4 .container .row .col .card2.card2-3 .btn-tiktok {
+    display: flex; }
+    .sec4 .container .row .col .card2.card2-3 .btn-tiktok .btn {
+      width: 100%;
+      max-width: 100%; }
+
+  .sec5 .container {
+    width: 100%; }
+    .sec5 .container .section-title3.mobile {
+      width: 100%;
+      max-width: 154px; }
+      .sec5 .container .section-title3.mobile .title-mobile {
+        width: 100%;
+        margin: 40px 0 24px; }
+    .sec5 .container .iframe-container {
+      height: 522px;
+      border-radius: 0; }
+      .sec5 .container .iframe-container.desktop {
+        display: none; }
+      .sec5 .container .iframe-container.mobile {
+        display: flex; }
+
+  .sec6 .container .sec6-line {
+    margin-top: 140px;
+    width: 100%; }
+  .sec6 .container .logos {
+    margin-top: 24px;
+    padding-top: 12px; }
+  .sec6 .container .row {
+    flex-direction: column; }
+    .sec6 .container .row .col .text-uppercase {
+      font-size: 16px; }
+    .sec6 .container .row .col .text {
+      font-size: 14px; }
+      .sec6 .container .row .col .text > span {
+        margin-left: 4px; }
+    .sec6 .container .row .col .mood-description {
+      font-size: 16px; }
+    .sec6 .container .row .col .logo-sintesis {
+      width: 100%;
+      max-width: 80px;
+      margin-bottom: 8px; }
+    .sec6 .container .row .col .logo-groupm {
+      width: 100%;
+      max-width: 80px;
+      margin-bottom: 8px; }
+    .sec6 .container .row .col .logo-description {
+      width: 100%;
+      max-width: 194px;
+      text-align: center;
+      color: #ffffff;
+      font-family: "LALIGAText";
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; }
+    .sec6 .container .row .col .logo-plus {
+      width: 40px;
+      height: 40px;
+      margin: 16px auto; }
+    .sec6 .container .row .col .logo-mood {
+      width: 100%;
+      max-width: 160px;
+      margin-bottom: 24px; } }
+
+/*# sourceMappingURL=styles.css.map */
